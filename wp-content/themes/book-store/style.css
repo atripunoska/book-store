@@ -1,0 +1,86 @@
+/*!
+Theme Name: book-store
+Theme URI: http://underscores.me/
+Author: Ana
+Author URI: https://github.com/atripunoska/book-store
+Description: E-commerce wordpress theme with reviews crawler
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: book-store
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+book-store is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+@font-face {
+    font-family: 'PlayfairDisplay-Black';
+    src: url('./fonts/PlayfairDisplay-Black.ttf');
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-Bold';
+    src: url('./fonts/PlayfairDisplay-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'PlayfairDisplay-Regular';
+    src: url('./fonts/PlayfairDisplay-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-Black';
+    src: url('./fonts/Raleway-Black.ttf');
+}
+
+
+@font-face {
+    font-family: 'Raleway-Bold';
+    src: url('./fonts/Raleway-Bold.ttf');
+}
+
+
+@font-face {
+    font-family: 'Raleway-Light';
+    src: url('./fonts/Raleway-Light.ttf');
+}
+
+
+@font-face {
+    font-family: 'Raleway-Medium';
+    src: url('./fonts/Raleway-Medium.ttf');
+}
+
+
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url('./fonts/Raleway-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-SemiBold';
+    src: url('./fonts/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway-Thin';
+    src: url('./fonts/Raleway-Thin.ttf');
+}
+
+
+
+body{
+	font-family: 'Raleway-Medium', sans-serif;
+}
+
+.bookReview {
+	border:1px solid #ccc;
+	padding:10px;
+}
