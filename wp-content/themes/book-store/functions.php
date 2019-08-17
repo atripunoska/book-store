@@ -133,6 +133,8 @@ function book_store_scripts() {
 	wp_enqueue_script( 'book-store-bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js');
 	wp_enqueue_script( 'book-store-jquery', get_template_directory_uri() . '/js/jquery-3.3.1.slim.min.js' );
 	wp_enqueue_script('book-store-popper', get_template_directory_uri() . '/js/popper.min.js');
+	wp_enqueue_script( 'book-store-modernizr', get_template_directory_uri() . '/js/modernizr.js' );
+	wp_enqueue_script( 'book-store-custom', get_template_directory_uri() . '/js/custom.js' );
 
 
 }
@@ -165,3 +167,13 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+function mytheme_add_woocommerce_support() {
+	add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+
+function add_image_class($class){
+    $class .= ' img-fluid';
+    return $class;
+}
+add_filter('get_image_tag_class','add_image_class');

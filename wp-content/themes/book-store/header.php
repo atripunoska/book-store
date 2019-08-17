@@ -23,6 +23,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<div class="se-pre-con"></div>
 	<div id="page" class="site">
 		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e('Skip to content', 'book-store'); ?></a>
 

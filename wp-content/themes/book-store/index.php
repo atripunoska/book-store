@@ -19,11 +19,6 @@ get_header();
 
 
 
-					//	$html = file_get_html('https://sakamknigi.mk/product/ponekogas-lazam/');
-						// Find all images 
-					//ss	echo $html;
-// 					foreach($html->find('.comment_container') as $element) 
-// echo $element.'<br>';
 
 
 						//$html1 = file_get_html('https://www.librarything.com/work/9101638');
@@ -31,9 +26,7 @@ get_header();
 // echo $element1.'<br>';
 
 
-// $html2 = file_get_html('https://kupikniga.mk/product/ponekogash-lazham/');
-// foreach($html2->find('.comment_container') as $element2) 
-// echo $element2.'<br>';
+
 
 
 						?>

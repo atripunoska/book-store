@@ -17,7 +17,7 @@ get_header();
 ?>
 
 <div id="primary" class="content-area">
-	<main id="main" class="site-main">
+	<main id="main" class="site-main sd">
 		<div class="container">
 			<div class="row">
 				
@@ -33,9 +33,9 @@ get_header();
 					?>
 					
 				</div>
-				<div class="col-12 col-md-3">
+			
 				<?php get_sidebar(); ?>
-				</div>
+			
 			</div>
 		</div>
 
