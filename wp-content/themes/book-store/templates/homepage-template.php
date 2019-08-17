@@ -11,8 +11,7 @@
                 <h1 class="hero-title">
                Вашата омилена е-продавница за книги
                 </h1>
-                <h3 class="hero-subtitle">Deciding what to read next? <br>You’re in the right place.</h3>
-            </div>
+                <h3 class="hero-subtitle">Читај повеќе, <br>добивај повеќе! </h3>
         </div>
     </div>
 </section>
@@ -25,17 +24,11 @@
             </div>
             <hr/>
             <div class="col-12">
-                <div class="block-grid-xs-1 block-grid-sm-2 block-grid-md-4">
-                    <div class="block-grid-item"><a class="card" href="#">sad
-                    </a></div>
-                    <div class="block-grid-item"><a href="#">sad</a></div>
-                    <div class="block-grid-item"><a href="#">das</a></div>
-                    <div class="block-grid-item"><a href="#">dsa</a></div>
-                    <div class="block-grid-item"><a href="#">dsa</a></div>
-                    <div class="block-grid-item"><a href="#">asdsad</a></div>
-                    <div class="block-grid-item"><a href="#"></a></div>
-                    <div class="block-grid-item"><a href="#"></a></div>
-                </div>
+
+                <?php echo do_shortcode('[products limit="8" columns="4" orderby="id" order="DESC" visibility="visible" category="drama, historical, mystery, romance, thriller, chick-lit"]');
+?>
+           
+            
             </div>
         </div>
     </div>

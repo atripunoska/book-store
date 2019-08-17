@@ -78,6 +78,27 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'PlayfairDisplay-Black', serif;
 }
 
+a{
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    transition: all 250ms ease;
+
+}
+
+#primary-menu li.nav-link > a{
+    color:#fff;
+    text-transform:uppercase;
+    font-family: 'Raleway-Bold', sans-serif;;
+    
+}
+
+#primary-menu li.nav-link > a:hover {
+    color:#7f8fa6;
+    text-decoration:none;
+}
+
 .bookReview {
     border: 1px solid #ccc;
     padding: 10px;
@@ -107,7 +128,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 15px;
     box-shadow: 0 0px 2px rgba(0, 0, 0, .15)!important;
     display: flex;
-    justify-content: space-around;
     flex-direction: row;
 }
 #v-pills-home .comment_container {
@@ -149,6 +169,12 @@ h1, h2, h3, h4, h5, h6 {
 .reviews-tabs.nav-pills .nav-link {
     border-radius: 0px;
     color: #343a40;
+    border: 1px solid #343a40;
+    margin-bottom: 5px;
+}
+.reviews-tabs.nav-pills .nav-link:hover {
+    color:#fff;
+    background-color: #343a40;
 }
 .wc-tabs-wrapper ul{
     margin:0 0 15px 0;
@@ -280,6 +306,73 @@ display:none;
     background-color: #FFF !important;
     border: 1px solid #343a40 !important;
     color: #343a40 !important;
+}
+
+.widget .product-categories li.cat-item-16{
+    display:none;
+}
+
+.navbar-brand .logo {
+    height:45px !important;
+}
+
+.entry-title{
+    margin: 25px 0;
+}
+
+#order_comments_field .woocommerce-input-wrapper {
+    width:100% !important;
+    display: block !important;
+}
+
+.cart-top{
+    position: absolute;
+    right: 10px;
+}
+
+.cart-top a{
+    color:#fff;
+}
+.cart-contents:before {
+    font-family:WooCommerce;
+    content: "\e01d";
+    font-size:28px;
+    margin-top:10px;
+    font-style:normal;
+    font-weight:400;
+    padding-right:5px;
+    vertical-align: bottom;
+}
+.cart-contents:hover {
+    text-decoration: none;
+}
+.cart-contents-count {
+    color: #fff;
+    background-color: #2ecc71;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 1px 6px;
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align: top;
+    font-size: 15px;
+}
+
+.menu-primary-menu-container{
+    margin:auto;
+}
+
+@media (max-width:1200px){
+    #primary-menu li.nav-link > a{
+        font-size:12px;
+    }
+}
+
+@media (max-width:992px){
+    #primary-menu li.nav-link > a
+    {
+        font-size:17px;
+    }
 }
 
 /** * Block Grid * ---------------------------------------------------------------------------- */

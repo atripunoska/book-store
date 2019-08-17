@@ -133,8 +133,7 @@ function book_store_scripts() {
 	wp_enqueue_script( 'book-store-bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js');
 	wp_enqueue_script( 'book-store-jquery', get_template_directory_uri() . '/js/jquery-3.3.1.slim.min.js' );
 	wp_enqueue_script('book-store-popper', get_template_directory_uri() . '/js/popper.min.js');
-	wp_enqueue_script( 'book-store-modernizr', get_template_directory_uri() . '/js/modernizr.js' );
-	wp_enqueue_script( 'book-store-custom', get_template_directory_uri() . '/js/custom.js' );
+
 
 
 }
@@ -177,3 +176,164 @@ function add_image_class($class){
     return $class;
 }
 add_filter('get_image_tag_class','add_image_class');
+
+add_filter( 'add_to_cart_text', 'woo_custom_single_add_to_cart_text' );                // < 2.1
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text' );  // 2.1 +
+  
+function woo_custom_single_add_to_cart_text() {
+  
+    return __( 'Купи', 'woocommerce' );
+  
+}
+
+add_filter( 'add_to_cart_text', 'woo_custom_product_add_to_cart_text' );            // < 2.1
+add_filter( 'woocommerce_product_add_to_cart_text', 'woo_custom_product_add_to_cart_text' );  // 2.1 +
+  
+function woo_custom_product_add_to_cart_text() {
+  
+	return __( 'Купи', 'woocommerce' );
+}
+
+/**
+ * Rename product data tabs
+ */
+add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
+function woo_rename_tabs( $tabs ) {
+
+	$tabs['description']['title'] = __( 'Опис' );		// Rename the description tab
+	$tabs['reviews']['title'] = __( 'Оцени' );				// Rename the reviews tab
+	$tabs['additional_information']['title'] = __( 'Дополнителни информации' );	// Rename the additional information tab
+
+	return $tabs;
+
+}
+
+
+/**
+ * Rename "home" in breadcrumb
+ */
+add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_home_text' );
+function wcc_change_breadcrumb_home_text( $defaults ) {
+    // Change the breadcrumb home text from 'Home' to 'Apartment'
+	$defaults['home'] = 'Почетна';
+	return $defaults;
+}
+
+
+function lv2_add_bootstrap_input_classes( $args, $key, $value = null ) {
+	/* This is not meant to be here, but it serves as a reference
+	of what is possible to be changed.
+	$defaults = array(
+		'type'			  => 'text',
+		'label'			 => '',
+		'description'	   => '',
+		'placeholder'	   => '',
+		'maxlength'		 => false,
+		'required'		  => false,
+		'id'				=> $key,
+		'class'			 => array(),
+		'label_class'	   => array(),
+		'input_class'	   => array(),
+		'return'			=> false,
+		'options'		   => array(),
+		'custom_attributes' => array(),
+		'validate'		  => array(),
+		'default'		   => '',
+	); */
+	// Start field type switch case
+	switch ( $args['type'] ) {
+		case "select" :  /* Targets all select input type elements, except the country and state select input types */
+			$args['class'][] = 'form-group'; // Add a class to the field's html element wrapper - woocommerce input types (fields) are often wrapped within a <p></p> tag
+			$args['input_class'] = array('form-control', 'input-lg'); // Add a class to the form input itself
+			//$args['custom_attributes']['data-plugin'] = 'select2';
+			$args['label_class'] = array('control-label');
+			$args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  ); // Add custom data attributes to the form input itself
+		break;
+		case 'country' : /* By default WooCommerce will populate a select with the country names - $args defined for this specific input type targets only the country select element */
+			$args['class'][] = 'form-group single-country';
+			$args['label_class'] = array('control-label');
+		break;
+		case "state" : /* By default WooCommerce will populate a select with state names - $args defined for this specific input type targets only the country select element */
+			$args['class'][] = 'form-group'; // Add class to the field's html element wrapper
+			$args['input_class'] = array('form-control', 'input-lg'); // add class to the form input itself
+			//$args['custom_attributes']['data-plugin'] = 'select2';
+			$args['label_class'] = array('control-label');
+			$args['custom_attributes'] = array( 'data-plugin' => 'select2', 'data-allow-clear' => 'true', 'aria-hidden' => 'true',  );
+		break;
+		case "password" :
+		case "text" :
+		case "email" :
+		case "tel" :
+		case "number" :
+			$args['class'][] = 'form-group';
+			//$args['input_class'][] = 'form-control input-lg'; // will return an array of classes, the same as bellow
+			$args['input_class'] = array('form-control', 'input-lg');
+			$args['label_class'] = array('control-label');
+		break;
+		case 'textarea' :
+			$args['input_class'] = array('form-control', 'input-lg', 'col-12');
+			$args['label_class'] = array('control-label','col-12');
+		break;
+		case 'checkbox' :
+		break;
+		case 'radio' :
+		break;
+		default :
+			$args['class'][] = 'form-group';
+			$args['input_class'] = array('form-control', 'input-lg');
+			$args['label_class'] = array('control-label');
+		break;
+	}
+	return $args;
+}
+add_filter('woocommerce_form_field_args','lv2_add_bootstrap_input_classes',10,3);
+
+/**
+ * Add Cart icon and count to header if WC is active
+ */
+function my_wc_cart_count() {
+ 
+    if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+ 
+        $count = WC()->cart->cart_contents_count;
+        ?><a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php
+        if ( $count > 0 ) {
+            ?>
+            <span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+            <?php
+        }
+                ?></a><?php
+    }
+ 
+}
+add_action( 'your_theme_header_top', 'my_wc_cart_count' );
+
+/**
+ * Ensure cart contents update when products are added to the cart via AJAX
+ */
+function my_header_add_to_cart_fragment( $fragments ) {
+ 
+    ob_start();
+    $count = WC()->cart->cart_contents_count;
+    ?><a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php
+    if ( $count > 0 ) {
+        ?>
+        <span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+        <?php            
+    }
+        ?></a><?php
+ 
+    $fragments['a.cart-contents'] = ob_get_clean();
+     
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+
+// remove width & height attributes from images
+//
+function remove_img_attr ($html)
+{
+    return preg_replace('/(width|height)="\d+"\s/', "", $html);
+}
+ 
+add_filter( 'post_thumbnail_html', 'remove_img_attr' );

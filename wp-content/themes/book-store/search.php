@@ -9,17 +9,19 @@
 
 get_header();
 ?>
+<div class="container">
+	<div class="row">
 
-	<section id="primary" class="content-area">
+	<section id="primary" class="content-area col-12 col-md-8 col-lg-9">
 		<main id="main" class="site-main ">
 
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title">
+				<h1 class="page-title my-4">
 					<?php
 					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'book-store' ), '<span>' . get_search_query() . '</span>' );
+					printf( esc_html__( 'Резултати од пребарувањето за: %s', 'book-store' ), '<span>' . get_search_query() . '</span>' );
 					?>
 				</h1>
 			</header><!-- .page-header -->
